@@ -1,48 +1,48 @@
 #include <iostream>
-#include <set>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
-bool compareSet(multiset<int> a, multiset<int> b) {
-    set<int>::iterator ita, itb;
-    ita = a.begin();
-    itb = b.begin();
-    while ((*ita) == (*itb)) {
-        ++ita; ++itb;
+int cmp(vector<long long> a, vector<long long> b) {
+    int pa = 0, pb = 0;
+    while(pa < a.size() && pb < b.size() && a[pa] == b[pb]) {
+        pa ++;
+        pb ++;
     }
-    return (*ita) < (*itb);
+
+    if(a[pa] == b[pb]) {
+        return (pa < a.size());
+    }
+
+    return a[pa] < b[pb];
 }
 
 int main() {
 
+    vector<long long> a[1002];
+
     int n;
     cin >> n;
 
-    multiset<int> arr[n + 1];
-
-    for (int i = 0; i < n; ++i) {
-        int sum;
-        cin >> sum;
-        for(int j =0; j < sum; ++j){
+    for (int i=0; i<n; ++i) {
+        int cnt;
+        cin >> cnt;
+        for (int j=0; j<cnt; ++j) {
             int tmp;
             cin >> tmp;
-            arr[i].insert(tmp);
+            a[i].push_back(tmp);
         }
+        sort(a[i].begin(), a[i].end());
     }
 
-    sort(arr, arr + n, compareSet);
+    sort(a, a+n, cmp);
 
-    for (int i = 0; i < n; ++i) {
-
-        multiset<int>::iterator it;
-
-        for (it = arr[i].begin(); it != arr[i].end(); ++ it) {
-            cout << (*it) << " ";
+    for (int i = 0; i < n; ++ i) {
+        for (int j = 0; j < a[i].size(); ++j) {
+            cout << a[i][j] << " ";
         }
-
         cout << endl;
-
     }
 
     return 0;
