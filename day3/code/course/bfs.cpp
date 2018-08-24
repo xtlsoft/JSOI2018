@@ -5,10 +5,9 @@
 using namespace std;
 
 const int INF = 0x3f3f3f3f;
-const int BORDER = 100000;
+const int BORDER = 1000000;
 const int MAXN = BORDER;
 
-int minn = INF;
 bool flag;
 int n, k;
 

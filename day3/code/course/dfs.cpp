@@ -19,7 +19,7 @@ int min(int a, int b) {
 void dfs(int now, int cow, int count) {
 
     if(now == cow) {
-        minn = min(now, minn);
+        minn = min(count, minn);
         flag = true;
     }
 

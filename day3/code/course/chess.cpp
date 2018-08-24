@@ -44,18 +44,16 @@ void dfs(int x, int y, int total, bool hasMagic) {
             vis[newx][newy] = true;
             if (color[newx][newy] != -1) {
                 if (color[x][y] == color[newx][newy]) {
-                    if (!hasMagic) color[x][y] = -1; // Another way.
                     dfs(newx, newy, total, true);
                 } else {
-                    if (!hasMagic) color[x][y] = -1; // Another way.
                     dfs(newx, newy, total + 1, true);
                 }
             } else {
                 if (hasMagic) {
                     color[newx][newy] = color[x][y];
                     dfs(newx, newy, total + 2, false);
+                    color[newx][newy] = -1;
                 } else {
-                    if (!hasMagic) color[x][y] = -1; // Another way.
                     return;
                 }
             }
@@ -87,7 +85,7 @@ int main() {
 
     dfs(1, 1, 0, true);
 
-    flag ? (cout << minn << endl) : (cout << 0 << endl);
+    flag ? (cout << minn << endl) : (cout << -1 << endl);
 
     return 0;
 
